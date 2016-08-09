@@ -6,25 +6,25 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests;
-use App\Models\ServiceType;
+use App\Models\Location;
 
-class ServiceController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function insertServices(Request $request)
+    public function insertLocation(Request $request)
     {
-        $service_type = ServiceType::where('service_type', $request->service_type)->first();
-        if ($service_type) {
-            return response()->json(['status' => '0', 'message' => 'Service Type already added']);
+        $location = Location::where('location', $request->location_name)->first();
+        if ($location) {
+            return response()->json(['status' => '0', 'message' => 'Location already added']);
         }
         else{
-            $suggested_service = new ServiceType();
-            $suggested_service->service_type = $request->service_type;
-            $suggested_service->save();
+            $location = new Location();
+            $location->location = $request->location_name;
+            $location->save();
             return response()->json(['status' => '1', 'message' => 'success']);
         }
     }
@@ -34,9 +34,11 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function listLocation(Request $request)
     {
-        //
+        $location = Location::select('location')->get();
+            return response()->json(['status' => '0', 'location_list' => $location]);
+        
     }
 
     /**
