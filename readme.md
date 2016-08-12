@@ -4,5 +4,30 @@
 
 Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-## Contributing
+## After Installing Laravel
+**Install the [npm](https://npmjs.org) dependencies**
+```js
+npm install
+```
+
+**Install the [bower](https://bower.io/) dependencies**
+```js
+bower install
+```
+
+##Running Elixir
+
+```js
+// Run all tasks...
+gulp
+
+// Run all tasks and minify all CSS and JavaScript...
+gulp --production
+```
+
+**Watching Assets For Changes**
+
+```js
+gulp watch
+```
 
