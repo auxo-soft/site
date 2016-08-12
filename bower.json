@@ -1,0 +1,21 @@
+{
+  "name": "site",
+  "description": "Laravel testing",
+  "main": "",
+  "authors": [
+    "Anoop"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "html"
+  ],
+  "homepage": "https://github.com/auxo-soft/site",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
