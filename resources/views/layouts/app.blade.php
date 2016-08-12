@@ -77,6 +77,8 @@
         <!-- build:js(public) js/app.js -->
         <!-- bower:js -->
         <!-- endbower -->
+        <!-- inject:js -->
+        <!-- endinject -->
         <!-- endbuild -->
     @else
         <script src="{{ elixir('js/app.js') }}"></script>
