@@ -1,4 +1,6 @@
 var elixir = require('laravel-elixir');
+require('laravel-elixir-wiredep');
+require('laravel-elixir-useref');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +13,17 @@ var elixir = require('laravel-elixir');
  |
  */
 
-elixir(function(mix) {
-    mix.sass('app.scss');
-});
+ elixir(function(mix) {
+
+     // Workflow stuff
+     mix.sass('app.scss')
+         .version(['js/app.js', 'css/app.css'])
+         .wiredep();
+
+     // Build stuff
+     if (elixir.config.production) {
+         mix.useref()
+             .version(['js/app.js', 'css/app.css']);
+     }
+
+ });
