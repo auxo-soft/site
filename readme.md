@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/auxo-soft/site.png?label=ready&title=Ready)](https://waffle.io/auxo-soft/site)
 # Laravel PHP Framework
 
 ## Official Documentation
