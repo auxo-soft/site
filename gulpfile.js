@@ -15,12 +15,26 @@ var inject = require('gulp-inject');
  |
  */
 
+gulp.task('script-inject', function () {
+ // var target = gulp.src('./resources/views/layouts/app.blade.php');
+ // // It's not necessary to read the files (will speed up things), we're only after their paths:
+ // var sources = gulp.src(['./public/angular/**/*.js'], {read: false});
+ //
+ // return target.pipe(inject(sources),{relative: true})
+ //   .pipe(gulp.dest('./resources/views/layouts/'));
+
+ gulp.src('./resources/views/layouts/app.blade.php')
+  .pipe(inject(gulp.src('./public/angular/**/*.js', {read: false}), {ignorePath: 'public'}))
+  .pipe(gulp.dest('./resources/views/layouts/'));
+});
+
  elixir(function(mix) {
 
      // Workflow stuff
      mix.sass('app.scss')
          .version(['js/app.js', 'css/app.css'])
-         .wiredep();
+         .wiredep()
+         .task('script-inject');
 
      // Build stuff
      if (elixir.config.production) {
@@ -28,13 +42,4 @@ var inject = require('gulp-inject');
              .version(['js/app.js', 'css/app.css']);
      }
 
- });
-
- gulp.task('index', function () {
-   var target = gulp.src('./resources/views/layouts/app.blade.php');
-   // It's not necessary to read the files (will speed up things), we're only after their paths:
-   var sources = gulp.src(['./angular/**/*.js'], {read: false});
-
-   return target.pipe(inject(sources))
-     .pipe(gulp.dest('./resources/views/layouts/'));
  });
