@@ -16,15 +16,21 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api/v1/', 'middleware' => ['api']], function () {
-    Route::post('user/signup', 'Api\v1\AuthenticationController@signup');
-    Route::post('insertServiceType', 'Api\v1\ServiceController@insertServices');
+	Route::post('user/signup', 'Api\v1\AuthenticationController@signup');
+	Route::post('login', 'Api\v1\AuthenticationController@authenticate'); 
+	
+	Route::post('insertServiceType', 'Api\v1\ServiceController@insertServices');
     Route::post('insertLocation', 'Api\v1\LocationController@insertLocation');
     Route::post('listLocation', 'Api\v1\LocationController@listLocation');
 });
 
 Route::group(['prefix' => 'api/v1/', 'middleware' => ['api','jwt.auth']], function () {
-	Route::post('user/login', 'Api\v1\AuthenticationController@authenticate');   
+	
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
 
 Route::auth();
 

@@ -93,11 +93,16 @@ class AuthenticationController extends Controller
 
         $credentials = $request->only('email', 'password');
         $user = new User();
+        $vendor = new Vendor();
+
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
-        $user->fname = $request->fname;
-        $user->lname = $request->lname;
-        $user->phone = $request->phone;
+        $user->fname = (isset($request->fname) ? $request->fname : '');
+        $user->lname = (isset($request->lname) ? $request->lname : '');
+        $user->phone = (isset($request->phone) ? $request->phone : '');
+        $user->roles = $request->role;
+        $user->brand_name = (isset($request->brand_name) ? $request->brand_name : '');
+        $user->service_type = (isset($request->service_type) ? $request->service_type : '');
         $user->token = $token;
         /*$user->logout = 1;
         $user->status = '0';*/
@@ -111,7 +116,7 @@ class AuthenticationController extends Controller
             // $file = fopen("/home/clone_wedmegood/test.txt","w");
             // fwrite($file,$request->email);
             // fclose($file);die; 
-            return response()->json(['status' => '1', 'message' => 'Congrats, you’re in! Check your email for verification.', 'user_details' => ['user_token' => $userToken['token'], 'user_id' => $user->id]]);
+            return response()->json(['status' => '1', 'message' => 'Congrats, you’re in! Check your email for verification.', 'user_details' => ['user_token' => $userToken['token'], 'user_id' => $user->id, 'user_role' => $user->roles]]);
         }
     }
 
@@ -190,7 +195,7 @@ class AuthenticationController extends Controller
             $res = $this->generateToken($userinfo);
             if ($res) {
                 return response()->json(['message' => 'success', 
-                    'user_details' => ['user_token' => $res['token'], 'user_id' => $userinfo->id]]);
+                    'user_details' => ['user_token' => $res['token'], 'user_id' => $userinfo->id, 'user_role' => $userinfo->roles]]);
             } else {
                 return response()->json(['status' => '0', 'message' => 'Error']);
             }
