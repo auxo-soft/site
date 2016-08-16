@@ -37,7 +37,7 @@ class LocationController extends Controller
     public function listLocation(Request $request)
     {
         $location = Location::select('location')->get();
-            return response()->json(['status' => '0', 'location_list' => $location]);
+            return response()->json(['status' => '1', 'message' => 'success', 'location_list' => $location]);
         
     }
 

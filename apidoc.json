@@ -1,0 +1,23 @@
+{
+	"name":"Clone_wedmegood APIs",
+	"version": "1.0.0",
+	"description": "Clone_wedmegood API",
+	"title": "Clone_wedmegood Api",
+	"url": "http://api.clonewedmegood.co/",
+	"header": {
+		"title": "Clone wedmegood",
+		"filename": "header.md"
+	},
+	"footer": {
+		"title": "-- END --",
+    	"filename": "footer.md"
+	},
+	"order": [
+    "GetUser",
+    "PostUser"
+  ],
+  "template": {
+  	"withCompare": false,
+  	"withGenerator": true
+  }
+}

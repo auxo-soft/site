@@ -34,9 +34,11 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function listServices(Request $request)
     {
-        //
+        $service_type = ServiceType::select('service_type')->get();
+            return response()->json(['status' => '1', 'message' => 'success', 'services' => $service_type]);
+        
     }
 
     /**

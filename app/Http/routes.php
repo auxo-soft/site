@@ -20,6 +20,7 @@ Route::group(['prefix' => 'api/v1/', 'middleware' => ['api']], function () {
 	Route::post('login', 'Api\v1\AuthenticationController@authenticate'); 
 	
 	Route::post('insertServiceType', 'Api\v1\ServiceController@insertServices');
+	Route::post('listServices', 'Api\v1\ServiceController@listServices');
     Route::post('insertLocation', 'Api\v1\LocationController@insertLocation');
     Route::post('listLocation', 'Api\v1\LocationController@listLocation');
 });
